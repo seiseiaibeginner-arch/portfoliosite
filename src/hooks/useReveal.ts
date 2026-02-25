@@ -1,28 +1,39 @@
 import { useEffect, useRef } from 'react';
 
-export function useReveal() {
-  const ref = useRef<HTMLElement | null>(null);
+export function useReveal<T extends HTMLElement = HTMLElement>(immediate = false) {
+  const ref = useRef<T | null>(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
-    const observer = new IntersectionObserver(
+    // immediate=true のとき（Hero など初期表示）は遅延後に全要素を表示
+    if (immediate) {
+      const timer = setTimeout(() => {
+        el.querySelectorAll('.reveal').forEach((t) => t.classList.add('visible'));
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+
+    // セクション全体が viewport に入ったとき、内部の全 .reveal を visible にする
+    const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            entry.target
+              .querySelectorAll('.reveal')
+              .forEach((t) => t.classList.add('visible'));
+            sectionObserver.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0.05, rootMargin: '0px 0px -60px 0px' }
     );
 
-    const targets = el.querySelectorAll('.reveal');
-    targets.forEach((t) => observer.observe(t));
+    sectionObserver.observe(el);
 
-    return () => observer.disconnect();
-  }, []);
+    return () => sectionObserver.disconnect();
+  }, [immediate]);
 
   return ref;
 }
