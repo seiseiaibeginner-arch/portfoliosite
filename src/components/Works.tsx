@@ -1,90 +1,42 @@
-import React from 'react';
-import './Works.css';
-import { Card } from './Card';
+import { projects } from '../data/projects';
+import { ProjectCard } from './ProjectCard';
+import { useReveal } from '../hooks/useReveal';
 
-const projects = [
-  {
-    id: 'puyo-puyo',
-    title: 'ぷよぷよ風パズルゲーム',
-    description: 'ReactとCanvasを用いたブラウザ向けのパズルゲーム。AIによる盤面評価アルゴリズムの実装例。',
-    image: '/image/puyo-puyo-game.png',
-    tags: ['React', 'Game Development', 'AI']
-  },
-  {
-    id: 'court-battle',
-    title: '法廷バトルゲーム',
-    description: '証拠品と証言を突きつけるアドベンチャーゲーム。LLMを活用した動的な会話生成システムを搭載。',
-    image: '/image/court-battle-game.png',
-    tags: ['Next.js', 'LLM API', 'Prompt Engineering']
-  },
-  {
-    id: 'ocr-web',
-    title: 'レシートOCR Webアプリ',
-    description: '画像からテキストを高精度に抽出するWebツール。業務効率化AIのプロトタイプ実装。',
-    image: '/image/ocr-web-app.png',
-    tags: ['Python', 'FastAPI', 'OCR']
-  },
-  {
-    id: 'kuchikomi',
-    title: '口コミ・グルメポータル',
-    description: '飲食店の口コミを集約するプラットフォーム。ユーザーの嗜好に基づく推薦AIエンジンを導入。',
-    image: '/image/kuchikomi-gourmet.png',
-    tags: ['Vue.js', 'Node.js', 'Machine Learning']
-  },
-  {
-    id: '5chbbs',
-    title: '5ch風 匿名掲示板',
-    description: 'スレッド形式の掲示板システム。AIによる不適切発言の自動モデレーション機能を搭載。',
-    image: '/image/5chbbs.png',
-    tags: ['PHP', 'MySQL', 'Content Moderation']
-  },
-  {
-    id: 'tatenaga-lp',
-    title: 'コンバージョン改善 LP',
-    description: '縦長ランディングページの最適化テスト事例。A/Bテストデータに基づくAIコピーライティングを適用。',
-    image: '/image/tatenagalp-lp.png',
-    tags: ['HTML/CSS', 'Marketing', 'Generative AI']
-  }
-];
+export function Works() {
+  const ref = useReveal();
 
-export const Works: React.FC = () => {
   return (
-    <section className="works-section" id="works">
-      <div className="container">
-        <div className="works-header animate-fade-up">
-          <span className="works-header-badge">Projects</span>
-          <h2>Featured Works</h2>
-          <p style={{ color: 'var(--text-secondary)', marginTop: '8px' }}>
-            AIとWeb技術を組み合わせた開発実績
+    <section
+      id="works"
+      ref={ref as React.RefObject<HTMLElement>}
+      className="py-24 sm:py-32"
+      style={{ background: '#f7f8f8' }}
+    >
+      <div className="mx-auto max-w-[1280px] px-10">
+        {/* Section header */}
+        <div className="mx-auto max-w-2xl text-center mb-16">
+          <p className="reveal text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: '#2dc56a' }}>
+            Works
+          </p>
+          <h2 className="reveal reveal-delay-1 text-4xl sm:text-5xl font-black tracking-tight text-[#1f1f1f]">
+            制作実績
+          </h2>
+          <p className="reveal reveal-delay-2 mt-5 text-lg text-[#555]">
+            Claude Code や各種AIツールを使って制作したプロジェクトです。
           </p>
         </div>
-        
-        <div className="works-grid">
-          {projects.map((project, index) => (
-            <div 
-              key={project.id} 
-              className="animate-fade-up" 
-              style={{ animationDelay: `${(index % 3 + 1) * 150}ms` }}
-            >
-              <Card className="work-card">
-                <div className="work-image-container">
-                  <img src={project.image} alt={project.title} className="work-image" />
-                  <div className="work-overlay">
-                    <span className="work-overlay-btn">View Details</span>
-                  </div>
-                </div>
-                <div className="work-tags">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="work-tag">{tag}</span>
-                  ))}
-                </div>
-                <h3 className="work-title">{project.title}</h3>
-                <p className="work-description">{project.description}</p>
-              </Card>
-            </div>
+
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, i) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              delay={Math.min((i % 3) + 1, 5)}
+            />
           ))}
         </div>
       </div>
     </section>
   );
-};
+}
