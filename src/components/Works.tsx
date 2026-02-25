@@ -3,12 +3,12 @@ import { ProjectCard } from './ProjectCard';
 import { useReveal } from '../hooks/useReveal';
 
 export function Works() {
-  const ref = useReveal();
+  const ref = useReveal<HTMLElement>();
 
   return (
     <section
       id="works"
-      ref={ref as React.RefObject<HTMLElement>}
+      ref={ref}
       className="py-24 sm:py-32"
       style={{ background: '#f7f8f8' }}
     >

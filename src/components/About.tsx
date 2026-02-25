@@ -1,14 +1,8 @@
 import { techCategories } from '../data/projects';
 import { useReveal } from '../hooks/useReveal';
 
-const dotColors: Record<string, string> = {
-  green:  '#2dc56a',
-  blue:   '#007cff',
-  yellow: '#d97706',
-  purple: '#9333ea',
-};
-
-const titleColors: Record<string, string> = {
+// dotColors と titleColors は同色のため1つに統合
+const categoryColors: Record<string, string> = {
   green:  '#2dc56a',
   blue:   '#007cff',
   yellow: '#d97706',
@@ -16,12 +10,12 @@ const titleColors: Record<string, string> = {
 };
 
 export function About() {
-  const ref = useReveal();
+  const ref = useReveal<HTMLElement>();
 
   return (
     <section
       id="about"
-      ref={ref as React.RefObject<HTMLElement>}
+      ref={ref}
       className="bg-white py-24 sm:py-32"
     >
       <div className="mx-auto max-w-[1280px] px-10">
@@ -45,13 +39,13 @@ export function About() {
             >
               <div
                 className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-[12px] text-lg"
-                style={{ background: `${dotColors[cat.color]}20` }}
+                style={{ background: `${categoryColors[cat.color]}20` }}
               >
                 {cat.icon}
               </div>
               <h3
                 className="text-sm font-bold mb-4 tracking-wide"
-                style={{ color: titleColors[cat.color] }}
+                style={{ color: categoryColors[cat.color] }}
               >
                 {cat.title}
               </h3>
@@ -60,7 +54,7 @@ export function About() {
                   <li key={item} className="flex items-center gap-2 text-sm text-[#555]">
                     <span
                       className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                      style={{ background: dotColors[cat.color] }}
+                      style={{ background: categoryColors[cat.color] }}
                     />
                     {item}
                   </li>
