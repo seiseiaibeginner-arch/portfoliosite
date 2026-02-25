@@ -1,0 +1,12 @@
+# 環境変数・APIキー
+.env
+.env.local
+.env*.local
+
+# Python
+__pycache__/
+*.pyc
+generate_hero.py
+
+# OS
+.DS_Store

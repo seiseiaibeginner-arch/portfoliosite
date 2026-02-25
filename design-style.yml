@@ -1,0 +1,299 @@
+# ============================================================
+# Design Style Guide — Prompt YAML
+# 抽象化されたデザインスタイル定義
+# 特定サイトに依存しない汎用フォーマット
+# ============================================================
+
+meta:
+  version: "1.0"
+  source_reference: "finds.co.jp (abstracted)"
+  purpose: "Reusable design token & style guide for any web project"
+
+# ─────────────────────────────────────────
+# COLOR PALETTE
+# ─────────────────────────────────────────
+colors:
+  background:
+    primary: "#ffffff"        # 基本背景：純白
+    secondary: "#f7f8f8"      # セクション区切り用：ごく薄いグレー
+    dark: "#1f1f1f"           # ダークセクション用背景
+
+  text:
+    primary: "#1f1f1f"        # メインテキスト：ほぼ黒
+    secondary: "#555555"      # サブテキスト：ミディアムグレー
+    muted: "#999999"          # 補足・キャプション用：ライトグレー
+    on_dark: "#ffffff"        # ダーク背景上のテキスト
+
+  accent:
+    primary: "#2dc56a"        # ブランドカラー：鮮やかなグリーン（活力・信頼感）
+    secondary: "#007cff"      # リンク・補助アクセント：ブルー
+    cta: "#fce809"            # 行動喚起ボタン：イエロー（視認性高）
+    cta_hover: "#e8d400"      # CTAホバー時の少し暗いイエロー
+
+  border:
+    light: "#e8e8e8"          # カード・区切り線
+    medium: "#cccccc"         # フォーム・インプット枠
+
+  overlay:
+    dark: "rgba(0,0,0,0.45)"  # 画像オーバーレイ
+    light: "rgba(255,255,255,0.85)" # 白系半透明レイヤー
+
+# ─────────────────────────────────────────
+# TYPOGRAPHY
+# ─────────────────────────────────────────
+typography:
+  font_family:
+    japanese: "'Noto Sans JP', sans-serif"   # 日本語メインフォント
+    latin: "'Lato', sans-serif"              # 英数字補助フォント
+    monospace: "'JetBrains Mono', monospace" # コード表示用
+
+  font_feature:
+    japanese_proportional: "'palt' 1"  # プロポーショナルメトリクスで読みやすさ向上
+
+  scale:
+    hero:       { size: "72px",  weight: 900, line_height: 1.1 }
+    h1:         { size: "52px",  weight: 800, line_height: 1.2 }
+    h2:         { size: "36px",  weight: 700, line_height: 1.3 }
+    h3:         { size: "24px",  weight: 600, line_height: 1.4 }
+    body_large: { size: "18px",  weight: 400, line_height: 1.8 }
+    body:       { size: "15px",  weight: 400, line_height: 1.75 }
+    small:      { size: "13px",  weight: 400, line_height: 1.6 }
+    label:      { size: "12px",  weight: 500, line_height: 1.5, letter_spacing: "0.08em" }
+
+  letter_spacing:
+    tight: "-0.02em"   # 大きい見出しに
+    normal: "0"
+    wide: "0.06em"     # ラベル・キャプションに
+
+# ─────────────────────────────────────────
+# SPACING & LAYOUT
+# ─────────────────────────────────────────
+spacing:
+  container_max_width: "1280px"
+  container_padding_x: "40px"   # デスクトップ
+  container_padding_x_mobile: "20px"
+
+  section_gap:
+    xl: "128px"   # セクション間の最大余白
+    lg: "80px"    # 標準セクション余白
+    md: "60px"    # コンパクトセクション
+    sm: "40px"
+
+  component_gap:
+    xl: "48px"
+    lg: "32px"
+    md: "24px"
+    sm: "16px"
+    xs: "8px"
+
+  grid:
+    columns_desktop: 12
+    columns_tablet: 6
+    columns_mobile: 4
+    gutter: "24px"
+
+# ─────────────────────────────────────────
+# BORDER & SHAPE
+# ─────────────────────────────────────────
+shape:
+  border_radius:
+    pill: "128px"   # フローティングナビ・タグ・全丸ボタン
+    xl: "24px"      # ヒーローカード・大きいコンテナ
+    lg: "20px"      # 標準カード
+    md: "12px"      # インプット・小カード
+    sm: "8px"       # タグ・バッジ
+    full: "9999px"  # 完全な円形
+
+  border_width:
+    thin: "1px"
+    medium: "2px"
+
+# ─────────────────────────────────────────
+# SHADOWS & ELEVATION
+# ─────────────────────────────────────────
+shadows:
+  none: "none"
+  sm:   "0 2px 8px rgba(0,0,0,0.06)"
+  md:   "0 4px 20px rgba(0,0,0,0.09)"
+  lg:   "0 4px 50px rgba(0,0,0,0.12)"   # カードのメインシャドウ
+  xl:   "0 8px 80px rgba(0,0,0,0.16)"   # フローティングUI
+  colored_accent: "0 8px 30px rgba(45,197,106,0.30)"  # アクセントカラーのグロー
+
+# ─────────────────────────────────────────
+# ANIMATION & MOTION
+# ─────────────────────────────────────────
+animation:
+  easing:
+    smooth:    "cubic-bezier(0.4, 0, 0.2, 1)"   # 標準イーズ
+    bounce:    "cubic-bezier(0.34, 1.56, 0.64, 1)"  # 少し跳ねる
+    sharp:     "cubic-bezier(0.4, 0, 0.6, 1)"
+
+  duration:
+    instant:  "100ms"
+    fast:     "200ms"
+    normal:   "350ms"
+    slow:     "600ms"
+    hero:     "900ms"   # ページロード時のヒーロー演出
+
+  patterns:
+    fade_up:
+      initial: "opacity:0; transform:translateY(24px)"
+      final:   "opacity:1; transform:translateY(0)"
+    fade_in:
+      initial: "opacity:0"
+      final:   "opacity:1"
+    scale_in:
+      initial: "opacity:0; transform:scale(0.96)"
+      final:   "opacity:1; transform:scale(1)"
+
+# ─────────────────────────────────────────
+# UI COMPONENTS
+# ─────────────────────────────────────────
+components:
+  button:
+    primary:
+      background: "{colors.accent.cta}"
+      color: "{colors.text.primary}"
+      border_radius: "{shape.border_radius.pill}"
+      padding: "14px 32px"
+      font_weight: 700
+      font_size: "15px"
+      hover_transform: "translateY(-2px)"
+      hover_shadow: "{shadows.md}"
+
+    secondary:
+      background: "transparent"
+      color: "{colors.text.primary}"
+      border: "2px solid {colors.border.medium}"
+      border_radius: "{shape.border_radius.pill}"
+      padding: "13px 31px"
+      font_weight: 600
+      hover_background: "{colors.background.secondary}"
+
+    accent:
+      background: "{colors.accent.primary}"
+      color: "#ffffff"
+      border_radius: "{shape.border_radius.pill}"
+      padding: "14px 32px"
+      font_weight: 700
+
+  card:
+    default:
+      background: "{colors.background.primary}"
+      border_radius: "{shape.border_radius.lg}"
+      shadow: "{shadows.lg}"
+      padding: "32px"
+      hover_transform: "translateY(-6px)"
+      hover_shadow: "{shadows.xl}"
+      transition: "transform 0.3s ease, box-shadow 0.3s ease"
+
+    subtle:
+      background: "{colors.background.secondary}"
+      border_radius: "{shape.border_radius.lg}"
+      shadow: "{shadows.sm}"
+      padding: "24px"
+
+  navigation:
+    style: "floating"              # フローティング型ナビゲーション
+    position: "fixed"
+    background: "rgba(255,255,255,0.90)"
+    backdrop_filter: "blur(12px)"
+    border_radius: "{shape.border_radius.pill}"
+    shadow: "{shadows.xl}"
+    padding: "12px 24px"
+
+  tag_badge:
+    border_radius: "{shape.border_radius.sm}"
+    padding: "4px 12px"
+    font_size: "12px"
+    font_weight: 600
+    letter_spacing: "0.05em"
+
+# ─────────────────────────────────────────
+# ATMOSPHERE & TONE
+# ─────────────────────────────────────────
+atmosphere:
+  overall_mood: "Fresh, modern, trustworthy, approachable"
+  energy_level: "Medium-high — active but not overwhelming"
+  formality: "Professional yet friendly (business-casual)"
+
+  visual_characteristics:
+    - "Ample white space creating breathing room"
+    - "High contrast between text and background"
+    - "Strategic use of bold accent color (green) for focal points"
+    - "Rounded shapes softening the overall feel"
+    - "Subtle animations adding life without distraction"
+    - "Card-based content organization for clarity"
+
+  do:
+    - "Use green accent sparingly — headlines, CTAs, key stats"
+    - "Maintain generous padding inside and between sections"
+    - "Apply shadow hierarchy (sm→xl) to suggest depth"
+    - "Animate on scroll with fade-up for progressive disclosure"
+    - "Use pill-shaped elements for interactive components"
+
+  dont:
+    - "Do not use more than 3 accent colors simultaneously"
+    - "Avoid dense text blocks — break with spacing and icons"
+    - "Do not use sharp corners on primary UI elements"
+    - "Avoid flat/shadow-less cards — they feel lifeless"
+    - "Do not animate everything — keep motion purposeful"
+
+# ─────────────────────────────────────────
+# IMAGE & VISUAL STYLE
+# ─────────────────────────────────────────
+imagery:
+  photography:
+    tone: "Bright, high-key, natural light"
+    style: "Clean product/lifestyle shots with white or neutral backgrounds"
+    treatment: "Slight warm tone, no heavy filters"
+
+  illustration:
+    style: "Flat vector with thin outlines, friendly and modern"
+    color_alignment: "Use palette colors — especially accent green"
+
+  hero_image:
+    preferred_type: "Wide-angle with negative space for text overlay"
+    background_brightness: "High-key (light backgrounds preferred)"
+    focal_point: "Center or right-aligned subject"
+
+  icon_style:
+    type: "Line icons or filled with accent color"
+    stroke_weight: "1.5–2px"
+    size_standard: "24px (UI), 48px (feature), 80px (hero)"
+
+# ─────────────────────────────────────────
+# RESPONSIVE BREAKPOINTS
+# ─────────────────────────────────────────
+breakpoints:
+  mobile:  "max-width: 639px"
+  tablet:  "min-width: 640px"
+  desktop: "min-width: 1024px"
+  wide:    "min-width: 1280px"
+
+# ─────────────────────────────────────────
+# AI IMAGE GENERATION PROMPT TEMPLATE
+# NanoBanana Pro / fal.ai / DALL-E / Midjourney 共通
+# ─────────────────────────────────────────
+ai_image_prompt_template:
+  style_keywords:
+    - "clean minimalist web UI aesthetic"
+    - "high-key bright background, white or very light grey"
+    - "flat vector illustration with thin black outlines"
+    - "pastel accent colors: green #2dc56a, yellow #fce809"
+    - "generous white space, airy composition"
+    - "soft drop shadows and rounded shapes"
+    - "professional Japanese web design"
+
+  negative_keywords:
+    - "dark background"
+    - "complex diagrams or charts"
+    - "dense text"
+    - "realistic photography"
+    - "heavy gradients"
+    - "sharp corners"
+
+  composition_notes: >
+    Wide-angle layout with ample negative space on left or right
+    for text overlay. Balanced, centered focal point.
+    Avoid busy or cluttered arrangements.
