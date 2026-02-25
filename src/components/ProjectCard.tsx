@@ -17,18 +17,7 @@ interface Props {
 export function ProjectCard({ project, delay }: Props) {
   return (
     <article
-      className={`reveal reveal-delay-${delay} group flex flex-col overflow-hidden rounded-[20px] bg-white transition-all duration-300 hover:-translate-y-1.5`}
-      style={{
-        boxShadow: '0 4px 50px rgba(0,0,0,0.12)',
-      }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.boxShadow =
-          '0 8px 80px rgba(0,0,0,0.16)';
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.boxShadow =
-          '0 4px 50px rgba(0,0,0,0.12)';
-      }}
+      className={`reveal reveal-delay-${delay} group flex flex-col overflow-hidden rounded-[20px] bg-white transition-all duration-300 hover:-translate-y-1.5 shadow-[0_4px_50px_rgba(0,0,0,0.12)] hover:shadow-[0_8px_80px_rgba(0,0,0,0.16)]`}
     >
       {/* Image */}
       <div className="overflow-hidden aspect-video">

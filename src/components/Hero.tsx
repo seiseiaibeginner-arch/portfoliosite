@@ -1,8 +1,11 @@
 import { stats } from '../data/projects';
+import { useReveal } from '../hooks/useReveal';
 
 export function Hero() {
+  const ref = useReveal<HTMLElement>(true);
+
   return (
-    <section className="relative min-h-screen bg-white overflow-hidden flex items-center">
+    <section ref={ref} className="relative min-h-screen bg-white overflow-hidden flex items-center">
       {/* Background pattern */}
       <div
         className="absolute inset-0 -z-10 opacity-35"
@@ -80,19 +83,8 @@ export function Hero() {
             <div className="reveal reveal-delay-4 mt-10 flex items-center gap-4">
               <a
                 href="#works"
-                className="inline-flex items-center gap-2 rounded-[128px] px-7 py-3.5 text-sm font-bold text-[#1f1f1f] transition-all duration-200 hover:-translate-y-0.5"
-                style={{
-                  background: '#fce809',
-                  boxShadow: '0 4px 20px rgba(252,232,9,0.40)',
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                    '0 6px 28px rgba(252,232,9,0.50)';
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                    '0 4px 20px rgba(252,232,9,0.40)';
-                }}
+                className="inline-flex items-center gap-2 rounded-[128px] px-7 py-3.5 text-sm font-bold text-[#1f1f1f] transition-all duration-200 hover:-translate-y-0.5 shadow-[0_4px_20px_rgba(252,232,9,0.40)] hover:shadow-[0_6px_28px_rgba(252,232,9,0.50)]"
+                style={{ background: '#fce809' }}
               >
                 実績を見る <span aria-hidden>→</span>
               </a>
